@@ -1,3 +1,18 @@
+/* =========================
+   ROOT VARIABLES
+========================= */
+:root {
+  --corner-margin: 20px;      /* distance from screen edge */
+  --corner-size: 180px;       /* desktop corner size */
+  --corner-gap: 30px;         /* space between corner and line */
+  --line-inset: 40px;         /* distance of lines from edge */
+  --line-thickness: 2px;
+  --gold-color: #8B500B;
+}
+
+/* =========================
+   BASE LAYOUT
+========================= */
 html, body {
   margin: 0;
   padding: 0;
@@ -12,6 +27,7 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  background-color: black;
 
   display: flex;
   justify-content: center;
@@ -21,90 +37,129 @@ body {
   color: white;
 }
 
-
+/* =========================
+   CORNERS
+========================= */
 .corner {
-  margin: 20px;
   position: fixed;
-  width: clamp(180px, 22vmin, 260px);
+  width: var(--corner-size);
   height: auto;
   z-index: 5;
 }
 
+/* Position corners using offsets (NO margin) */
 .top-left {
-    top: 0;
-    left: 0;
+  top: var(--corner-margin);
+  left: var(--corner-margin);
 }
 
 .top-right {
-    top: 0;
-    right: 0;
+  top: var(--corner-margin);
+  right: var(--corner-margin);
 }
 
 .bottom-left {
-    bottom: 0;
-    left: 0;
+  bottom: var(--corner-margin);
+  left: var(--corner-margin);
 }
 
 .bottom-right {
-    bottom: 0;
-    right: 0;
+  bottom: var(--corner-margin);
+  right: var(--corner-margin);
 }
 
+/* =========================
+   CENTER CONTENT
+========================= */
 .center-container {
-    position: relative;
-    text-align: center;
-    z-index: 10;
+  position: relative;
+  text-align: center;
+  z-index: 10;
 }
 
 .phoenix {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    opacity: 0.5;
-    z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  opacity: 0.5;
+  z-index: 1;
 }
 
 #countdown {
   font-family: "Fleur De Leah", cursive;
-    position: relative;
-    font-size: 4rem;
-    z-index: 2;
-    text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  position: relative;
+  font-size: 4rem;
+  z-index: 2;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+/* =========================
+   GOLD LINES
+========================= */
+
+/* computed offset from corners */
+:root {
+  --corner-offset: calc(var(--corner-margin) + var(--corner-size) + var(--corner-gap));
 }
 
 .gold-line {
   position: fixed;
-  background-color: #8B500B;
+  background-color: var(--gold-color);
   box-shadow: 0 0 4px rgba(139, 80, 11, 0.6);
   z-index: 1000;
 }
 
+/* Top */
 .gold-line.top {
-  top: 40px;
-  left: 220px;
-  right: 220px;
-  height: 2px;
+  top: var(--line-inset);
+  left: var(--corner-offset);
+  right: var(--corner-offset);
+  height: var(--line-thickness);
 }
 
+/* Bottom */
 .gold-line.bottom {
-  bottom: 40px;
-  left: 220px;
-  right: 220px;
-  height: 2px;
+  bottom: var(--line-inset);
+  left: var(--corner-offset);
+  right: var(--corner-offset);
+  height: var(--line-thickness);
 }
 
+/* Left */
 .gold-line.left {
-  left: 40px;
-  top: 220px;
-  bottom: 220px;
-  width: 2px;
+  left: var(--line-inset);
+  top: var(--corner-offset);
+  bottom: var(--corner-offset);
+  width: var(--line-thickness);
 }
 
+/* Right */
 .gold-line.right {
-  right: 40px;
-  top: 220px;
-  bottom: 220px;
-  width: 2px;
+  right: var(--line-inset);
+  top: var(--corner-offset);
+  bottom: var(--corner-offset);
+  width: var(--line-thickness);
+}
+
+/* =========================
+   MOBILE ADJUSTMENTS
+========================= */
+@media (max-width: 768px) {
+
+  :root {
+    --corner-size: 32vw;   /* Bigger corners on phone */
+    --corner-gap: 18px;
+    --line-inset: 28px;
+    --line-thickness: 2px;
+  }
+
+  #countdown {
+    font-size: 3rem;
+  }
+
+  .phoenix {
+    width: 70vw;
+  }
 }
