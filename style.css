@@ -1,18 +1,12 @@
-/* =========================
-   ROOT VARIABLES
-========================= */
 :root {
-  --corner-margin: 20px;      /* distance from screen edge */
-  --corner-size: 180px;       /* desktop corner size */
-  --corner-gap: 30px;         /* space between corner and line */
-  --line-inset: 40px;         /* distance of lines from edge */
+  --corner-margin: 20px;
+  --corner-size: 180px;
+  --corner-gap: 30px;
+  --line-inset: 40px;
   --line-thickness: 2px;
   --gold-color: #8B500B;
 }
 
-/* =========================
-   BASE LAYOUT
-========================= */
 html, body {
   margin: 0;
   padding: 0;
@@ -26,7 +20,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-color: black;
+  background-color: #242424;
 
   display: flex;
   justify-content: center;
@@ -36,9 +30,6 @@ body {
   color: white;
 }
 
-/* =========================
-   CORNERS
-========================= */
 .corner {
   position: fixed;
   width: var(--corner-size);
@@ -46,7 +37,6 @@ body {
   z-index: 5;
 }
 
-/* Position corners using offsets (NO margin) */
 .top-left {
   top: var(--corner-margin);
   left: var(--corner-margin);
@@ -67,9 +57,6 @@ body {
   right: var(--corner-margin);
 }
 
-/* =========================
-   CENTER CONTENT
-========================= */
 .center-container {
   position: relative;
   text-align: center;
@@ -94,11 +81,6 @@ body {
   text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
 }
 
-/* =========================
-   GOLD LINES
-========================= */
-
-/* computed offset from corners */
 :root {
   --corner-offset: calc(var(--corner-margin) + var(--corner-size) + var(--corner-gap));
 }
@@ -110,7 +92,6 @@ body {
   z-index: 1000;
 }
 
-/* Top */
 .gold-line.top {
   top: var(--line-inset);
   left: var(--corner-offset);
@@ -118,7 +99,6 @@ body {
   height: var(--line-thickness);
 }
 
-/* Bottom */
 .gold-line.bottom {
   bottom: var(--line-inset);
   left: var(--corner-offset);
@@ -126,7 +106,6 @@ body {
   height: var(--line-thickness);
 }
 
-/* Left */
 .gold-line.left {
   left: var(--line-inset);
   top: var(--corner-offset);
@@ -134,7 +113,6 @@ body {
   width: var(--line-thickness);
 }
 
-/* Right */
 .gold-line.right {
   right: var(--line-inset);
   top: var(--corner-offset);
@@ -142,13 +120,10 @@ body {
   width: var(--line-thickness);
 }
 
-/* =========================
-   MOBILE ADJUSTMENTS
-========================= */
 @media (max-width: 768px) {
 
   :root {
-    --corner-size: 32vw;   /* Bigger corners on phone */
+    --corner-size: 32vw;
     --corner-gap: 18px;
     --line-inset: 28px;
     --line-thickness: 2px;
